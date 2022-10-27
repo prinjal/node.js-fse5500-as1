@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * @file Implements user class to store the fields pertaining
+ * to the user's data.
+ */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };

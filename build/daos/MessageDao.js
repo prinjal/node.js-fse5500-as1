@@ -31,7 +31,7 @@ class MessageDao {
     }
     deleteMessage(mid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield MessageModel_1.default.find({ _id: mid });
+            return yield MessageModel_1.default.deleteOne({ _id: mid });
         });
     }
 }

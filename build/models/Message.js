@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * @file Implements message class that stores all the fields pertaining to
+ * a specific message.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 class Message {
     constructor(data) {

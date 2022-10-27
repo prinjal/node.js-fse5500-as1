@@ -15,12 +15,13 @@ const BookmarkController_1 = __importDefault(require("./controllers/BookmarkCont
 const BookmarkDao_1 = __importDefault(require("./daos/BookmarkDao"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
 const MessageDao_1 = __importDefault(require("./daos/MessageDao"));
+const LikeController_1 = __importDefault(require("./controllers/LikeController"));
 const cors = require('cors');
 var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(cors());
 app.use(express_1.default.json());
-mongoose_1.default.connect('mongodb://127.0.0.1/assignment1')
+mongoose_1.default.connect('mongodb+srv://prinjaldave:<password>@cluster0.t05i0ok.mongodb.net/?retryWrites=true&w=majority')
     .then(() => console.log('Connected to MongoDB....'))
     .catch(err => console.error('Error', err));
 //userDao.createUser(new User("alice", "alice123", "Alice", "Wonderland", "alice@wonderland.com"));
@@ -29,6 +30,7 @@ const userController = new UserController_1.default(app, new UserDao_1.default()
 const tuitController = new TuitController_1.default(app, new TuitDao_1.default());
 const followController = new FollowsController_1.default(app, new FollowsDao_1.default());
 const messageController = new MessageController_1.default(app, new MessageDao_1.default());
+const likeController = LikeController_1.default.getInstance(app);
 app.get('/', (req, res) => res.send('Welcome to Foundation of Software Engineering!!!!'));
 app.get('/hello', (req, res) => res.send('Welcome to Foundation of Software Engineering!'));
 /**

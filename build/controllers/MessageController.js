@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class MessageController {
     constructor(app, messageDao) {
         this.sendMessage = (req, res) => {
-            this.messageDao.sendMessage(req.params.uidReceiver, req.params.uidSender, req.body)
+            this.messageDao.sendMessage(req.params.uidSender, req.params.uidReceiver, req.body)
                 .then(message => res.json(message));
         };
         this.viewSentMessages = (req, res) => {

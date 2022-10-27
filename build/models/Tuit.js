@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * @file Implements tuit class that stores all the fields pertaining to
+ * a specific tuit.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 class Tuit {
     constructor(data) {

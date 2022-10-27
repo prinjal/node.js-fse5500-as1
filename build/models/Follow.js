@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * @file Implements follows class that stores all the fields pertaining to
+ * a specific follows.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 class Follows {
     constructor(data) {
