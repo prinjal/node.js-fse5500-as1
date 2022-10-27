@@ -25,8 +25,6 @@ const user = process.env.USERNAME || 'prinjaldave';
 const userPassword = process.env.USERPASSWORD || 'pm07111996';
 
 mongoose.connect(`mongodb+srv://${user}:${userPassword}@cluster0.vvupba6.mongodb.net/tuiter?retryWrites=true&w=majority`)
-    .then(() => console.log('Connected to MongoDB....'))
-    .catch(err => console.error('Error', err));
 
 //userDao.createUser(new User("alice", "alice123", "Alice", "Wonderland", "alice@wonderland.com"));
 const bookmarkController = new BookmarkController(app, new BookmarkDao());
