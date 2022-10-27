@@ -24,7 +24,7 @@ app.use(express.json());
 const user = process.env.USERNAME;
 const userPassword = process.env.USERPASSWORD;
 
-mongoose.connect(`mongodb://${user}:${userPassword}@main-shard-00-00-03xkr.mongodb.net:27017,main-shard-00-01-03xkr.mongodb.net:27017,main-shard-00-02-03xkr.mongodb.net:27017/main?ssl=true&replicaSet=Main-shard-0&authSource=admin&retryWrites=true`)
+mongoose.connect(`mongodb://${user}:${userPassword}@ac-yy6qxev-shard-00-00.gdg5vag.mongodb.net:27017,ac-yy6qxev-shard-00-01.gdg5vag.mongodb.net:27017,ac-yy6qxev-shard-00-02.gdg5vag.mongodb.net:27017/?ssl=true&replicaSet=atlas-mwkx2v-shard-0&authSource=admin&retryWrites=true&w=majority`)
     //`mongodb+srv://${user}:${userPassword}@cluster1.gdg5vag.mongodb.net/?retryWrites=true&w=majority`
     .then(() => console.log('Connected to MongoDB....'))
     .catch(err => console.error('Error', err));
