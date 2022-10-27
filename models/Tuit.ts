@@ -1,3 +1,8 @@
+/**
+ * @file Implements tuit class that stores all the fields pertaining to
+ * a specific tuit.
+ */
+
 import User from "./User";
 
 export default class Tuit {

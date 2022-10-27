@@ -1,3 +1,8 @@
+/**
+ * @file Implements account type enum to specifiy a
+ * type of account type.
+ */
+
 enum AccountType {
     Personal = 'PERSONAL',
     Academic = 'ACADEMIC',

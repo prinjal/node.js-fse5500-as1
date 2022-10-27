@@ -1,6 +1,12 @@
+/**
+ * @file Implements user class to store the fields pertaining 
+ * to the user's data.
+ */
+
 import AccountType from "./AccountType";
 import MaritalStatus from "./MaritalStatus";
 import Location from "./Location";
+
 
 export default class User {
     private username: string = '';

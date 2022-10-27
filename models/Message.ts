@@ -1,3 +1,8 @@
+/**
+ * @file Implements message class that stores all the fields pertaining to
+ * a specific message.
+ */
+
 export default class Message {
     private message: string = '';
     private to: Number = 0;
