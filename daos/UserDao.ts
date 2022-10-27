@@ -12,11 +12,10 @@ export default class UserDao implements UserDaoI {
     async findUserById(uid: string): Promise<any> {
         return await UserModel.findById(uid);
     }
-    async createUser(user: User): Promise<User> {
-        console.log(user);
+    async createUser(user: any): Promise<any> {
         return await UserModel.create(user);
     }
-    async updateUser(uid: string, user: User): Promise<any> {
+    async updateUser(uid: string, user: any): Promise<any> {
         return await UserModel.updateOne({ _id: uid }, { $set: user });
     }
     async deleteUser(uid: string): Promise<any> {

@@ -26,6 +26,13 @@ class User {
         this.lastName = data.lastName;
         this.email = data.email;
         this.profilePhoto = data.profilePhoto;
+        this.headerImage = data.headerImage;
+        this.accountType = data.accountType;
+        this.maritalStauts = data.maritalStatus;
+        this.biography = data.biography;
+        this.dateOfBirth = data.dateOfBirth;
+        this.joined = data.joined;
+        this.location = data.location;
     }
 }
 exports.default = User;

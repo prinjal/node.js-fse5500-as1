@@ -5,6 +5,14 @@ import mongoose from "mongoose";
 import User from './models/User';
 import TuitController from './controllers/TuitController';
 import TuitDao from './daos/TuitDao';
+import FollowsController from './controllers/FollowsController';
+import FollowsDao from './daos/FollowsDao';
+import BookmarkController from './controllers/BookmarkController';
+import BookmarkDao from './daos/BookmarkDao';
+import MessageController from './controllers/MessageController';
+import MessageDao from './daos/MessageDao';
+import LikeController from './controllers/LikeController';
+import LikeDao from './daos/LikeDao';
 
 const cors = require('cors')
 
@@ -18,9 +26,12 @@ mongoose.connect('mongodb://127.0.0.1/assignment1')
     .catch(err => console.error('Error', err));
 
 //userDao.createUser(new User("alice", "alice123", "Alice", "Wonderland", "alice@wonderland.com"));
+const bookmarkController = new BookmarkController(app, new BookmarkDao());
 const userController = new UserController(app, new UserDao());
 const tuitController = new TuitController(app, new TuitDao());
-
+const followController = new FollowsController(app, new FollowsDao());
+const messageController = new MessageController(app, new MessageDao());
+const likeController = LikeController.getInstance(app);
 
 app.get('/', (req: Request, res: Response) =>
     res.send('Welcome to Foundation of Software Engineering!!!!'));

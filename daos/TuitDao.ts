@@ -14,10 +14,10 @@ export default class TuitDao implements TuitDaoI {
     async findTuitsByID(tid: string): Promise<Tuit | null> {
         return await TuitModel.findById(tid);
     }
-    async createTuit(tuit: Tuit): Promise<Tuit> {
+    async createTuit(tuit: Tuit): Promise<any> {
         return await TuitModel.create(tuit);
     }
-    async updateTuit(tid: string, tuit: Tuit): Promise<any> {
+    async updateTuit(tid: string, tuit: any): Promise<any> {
         return await TuitModel.updateOne({ _id: tid }, { $set: tuit });
     }
 

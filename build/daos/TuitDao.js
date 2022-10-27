@@ -21,7 +21,7 @@ class TuitDao {
     }
     findTuitsByUser(uid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.findById({ postedBy: uid });
+            return yield TuitModel_1.default.find({ postedBy: uid });
         });
     }
     findTuitsByID(tid) {

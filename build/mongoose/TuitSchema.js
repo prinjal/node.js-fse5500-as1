@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const Tuit_1 = __importDefault(require("../models/Tuit"));
+// const Tuit = require("../models/Tuit");
 const TuitSchema = new mongoose_1.default.Schema({
     tuit: { type: String, required: true },
-    postedOn: Date.now,
-    postedBy: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'User', required: true },
-    comments: [Tuit_1.default],
+    postedOn: Date,
+    postedBy: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'UserModel', required: true },
+    comments: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Tuit' }],
     likes: Number
 }, { collection: 'tuits' });
 exports.default = TuitSchema;

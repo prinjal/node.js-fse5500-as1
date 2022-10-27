@@ -19,6 +19,11 @@ class UserDao {
             return yield UserModel_1.default.find();
         });
     }
+    findUserByName(username) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield UserModel_1.default.find({ username: username });
+        });
+    }
     findUserById(uid) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield UserModel_1.default.findById(uid);
@@ -26,7 +31,6 @@ class UserDao {
     }
     createUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(user);
             return yield UserModel_1.default.create(user);
         });
     }
