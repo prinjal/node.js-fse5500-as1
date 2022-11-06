@@ -29,9 +29,9 @@ class TuitDao {
             return yield TuitModel_1.default.findById(tid);
         });
     }
-    createTuit(tuit) {
+    createTuit(tuit, uid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.create(tuit);
+            return yield TuitModel_1.default.create(Object.assign(Object.assign({}, tuit), { postedBy: uid }));
         });
     }
     updateTuit(tid, tuit) {

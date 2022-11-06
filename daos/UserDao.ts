@@ -3,6 +3,7 @@ import UserModel from "../mongoose/UserModel";
 import UserDaoI from "../interfaces/UserDao";
 
 export default class UserDao implements UserDaoI {
+    
     async findAllUsers(): Promise<User[]> {
         return await UserModel.find();
     }
@@ -20,6 +21,10 @@ export default class UserDao implements UserDaoI {
     }
     async deleteUser(uid: string): Promise<any> {
         return await UserModel.deleteOne({ _id: uid });
+    }
+
+    async deleteUserByUserName(userName: string): Promise<any> {
+        return await UserModel.deleteMany({username:userName});
     }
 
 }

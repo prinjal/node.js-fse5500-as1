@@ -26,18 +26,23 @@ class UserController {
             this.userDao.deleteUser(req.params.userid)
                 .then(user => res.json(user));
         };
+        this.deleteUserByUserName = (req, res) => {
+            this.userDao.deleteUserByUserName(req.params.username)
+                .then(user => res.json(user));
+        };
         this.updateUser = (req, res) => {
             this.userDao.updateUser(req.params.userid, req.body)
                 .then(user => res.json(user));
         };
         this.app = app;
         this.userDao = userDao;
-        this.app.get('/users', this.findAllUsers);
-        this.app.get('/users/name/:username', this.findUserByName);
-        this.app.get('/users/:userid', this.findUserByID);
-        this.app.post('/users', this.createUser);
-        this.app.delete('/users/:userid', this.deleteUser);
-        this.app.put('/users/:userid', this.updateUser);
+        this.app.get('/api/users', this.findAllUsers);
+        this.app.get('/api/users/name/:username', this.findUserByName);
+        this.app.get('/api/users/:userid', this.findUserByID);
+        this.app.post('/api/users', this.createUser);
+        this.app.delete('/api/users/:userid', this.deleteUser);
+        this.app.get('/api/users/username/:username/delete', this.deleteUserByUserName);
+        this.app.put('/api/users/:userid', this.updateUser);
     }
 }
 exports.default = UserController;

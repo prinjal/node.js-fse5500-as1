@@ -21,9 +21,9 @@ var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(cors());
 app.use(express_1.default.json());
-mongoose_1.default.connect('mongodb+srv://prinjaldave:<password>@cluster0.t05i0ok.mongodb.net/?retryWrites=true&w=majority')
-    .then(() => console.log('Connected to MongoDB....'))
-    .catch(err => console.error('Error', err));
+const user = process.env.USERNAME || 'prinjaldave';
+const userPassword = process.env.USERPASSWORD || 'pm07111996';
+mongoose_1.default.connect(`mongodb+srv://${user}:${userPassword}@cluster0.vvupba6.mongodb.net/tuiter?retryWrites=true&w=majority`);
 //userDao.createUser(new User("alice", "alice123", "Alice", "Wonderland", "alice@wonderland.com"));
 const bookmarkController = new BookmarkController_1.default(app, new BookmarkDao_1.default());
 const userController = new UserController_1.default(app, new UserDao_1.default());
@@ -37,6 +37,6 @@ app.get('/hello', (req, res) => res.send('Welcome to Foundation of Software Engi
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on Heroku if available.
  */
-const PORT = process.env.PORT || 4200;
+const PORT = process.env.PORT || 8080;
 console.log(PORT);
 app.listen(PORT);

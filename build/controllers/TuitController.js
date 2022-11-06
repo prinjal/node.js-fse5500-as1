@@ -1,9 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Tuit_1 = __importDefault(require("../models/Tuit"));
 class TuitController {
     constructor(app, tuitDao) {
         this.findAllTuits = (req, res) => {
@@ -17,7 +13,7 @@ class TuitController {
             this.tuitDao.findTuitsByUser(req.params.userid).then(tuits => res.json(tuits));
         };
         this.createTuit = (req, res) => {
-            this.tuitDao.createTuit(new Tuit_1.default(req.body)).then(tuit => res.json(tuit));
+            this.tuitDao.createTuit(req.body, req.params.userid).then(tuit => res.json(tuit));
         };
         this.updateTuit = (req, res) => {
             this.tuitDao.updateTuit(req.params.tuitid, req.body).then(tuit => res.json(tuit));
@@ -27,12 +23,12 @@ class TuitController {
         };
         this.app = app;
         this.tuitDao = tuitDao;
-        this.app.get('/tuits', this.findAllTuits);
-        this.app.get('/tuits/:tuitid', this.findTuitById);
-        this.app.get('/:userid/tuits', this.findTuitsByUser);
-        this.app.post('/tuits', this.createTuit);
-        this.app.put('/tuits/:tuitid', this.updateTuit);
-        this.app.delete('/tuits/:tuitid', this.deleteTuit);
+        this.app.get('/api/tuits', this.findAllTuits);
+        this.app.get('/api/tuits/:tuitid', this.findTuitById);
+        this.app.get('/api/users/:userid/tuits', this.findTuitsByUser);
+        this.app.post('/api/users/:userid/tuits', this.createTuit);
+        this.app.put('/api/tuits/:tuitid', this.updateTuit);
+        this.app.delete('/api/tuits/:tuitid', this.deleteTuit);
     }
 }
 exports.default = TuitController;

@@ -44,5 +44,10 @@ class UserDao {
             return yield UserModel_1.default.deleteOne({ _id: uid });
         });
     }
+    deleteUserByUserName(userName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield UserModel_1.default.deleteMany({ username: userName });
+        });
+    }
 }
 exports.default = UserDao;
