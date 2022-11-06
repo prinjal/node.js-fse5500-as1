@@ -36,6 +36,7 @@
              LikeController.likeController = new LikeController();
              app.get("/api/users/:uid/likes", LikeController.likeController.findAllTuitsLikedByUser);
              app.get("/api/tuits/:tid/likes", LikeController.likeController.findAllUsersThatLikedTuit);
+             app.get("/api/tuits/:tid/likes/count", LikeController.likeController.findAllUsersThatLikedTuitCount);
              app.post("/api/users/:uid/likes/:tid", LikeController.likeController.userLikesTuit);
              app.delete("/api/users/:uid/unlikes/:tid", LikeController.likeController.userUnlikesTuit);
          }
@@ -43,6 +44,11 @@
      }
  
      private constructor() {}
+
+
+     findAllUsersThatLikedTuitCount = (req: Request, res: Response) =>
+         LikeController.likeDao.findAllUsersThatLikedTuit(req.params.tid)
+             .then(likes => res.json(likes));
  
      /**
       * Retrieves all users that liked a tuit from the database

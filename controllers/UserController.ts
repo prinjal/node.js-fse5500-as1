@@ -16,7 +16,7 @@ export default class UserController implements UserControllerI {
         this.app.get('/api/users/:userid', this.findUserByID);
         this.app.post('/api/users', this.createUser);
         this.app.delete('/api/users/:userid', this.deleteUser);
-        this.app.get('/api/users/username/:username/delete', this.deleteUserByUserName);
+        this.app.delete('/api/users/username/:username/delete', this.deleteUserByUserName);
         this.app.put('/api/users/:userid', this.updateUser);
 
     }
