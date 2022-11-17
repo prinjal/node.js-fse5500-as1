@@ -15,6 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const LikeModel_1 = __importDefault(require("../mongoose/LikeModel"));
 class LikeDao {
     constructor() {
+        this.findAllUsersThatLikedTuitCount = (tid) => __awaiter(this, void 0, void 0, function* () {
+            LikeModel_1.default
+                .find({ tuit: tid })
+                .count();
+        });
         this.findAllUsersThatLikedTuit = (tid) => __awaiter(this, void 0, void 0, function* () {
             return LikeModel_1.default
                 .find({ tuit: tid })

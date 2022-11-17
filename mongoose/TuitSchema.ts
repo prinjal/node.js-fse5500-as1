@@ -19,7 +19,12 @@ const TuitSchema = new mongoose.Schema({
     tuit: { type: String, required: true },
     postedOn: Date,
     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel', required: true },
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tuit'}],
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tuit' }],
+    stats: {
+        replies: { type: Number, default: 0 },
+        retuits: { type: Number, default: 0 },
+        likes: { type: Number, default: 0 }
+    },    
     likes: Number
 }, { collection: 'tuits' });
 

@@ -21,7 +21,7 @@ class UserDao {
     }
     findUserByName(username) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UserModel_1.default.find({ username: username });
+            return yield UserModel_1.default.findOne({ username: username });
         });
     }
     findUserById(uid) {

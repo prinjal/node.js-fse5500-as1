@@ -7,8 +7,8 @@ export default class UserDao implements UserDaoI {
     async findAllUsers(): Promise<User[]> {
         return await UserModel.find();
     }
-    async findUserByName(username: String): Promise<User[]> {
-        return await UserModel.find({ username: username });
+    async findUserByName(username: String): Promise<any> {
+        return await UserModel.findOne({ username: username });
     }
     async findUserById(uid: string): Promise<any> {
         return await UserModel.findById(uid);

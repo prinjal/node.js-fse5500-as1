@@ -10,10 +10,19 @@ class TuitController {
             this.tuitDao.findTuitsByID(req.params.tuitid).then(tuit => res.json(tuit));
         };
         this.findTuitsByUser = (req, res) => {
-            this.tuitDao.findTuitsByUser(req.params.userid).then(tuits => res.json(tuits));
+            let userId = req.params.uid === "me"
+                && req.session['profile'] ?
+                req.session['profile']._id :
+                req.params.uid;
+            this.tuitDao.findTuitsByUser(userId).then(tuits => res.json(tuits));
         };
         this.createTuit = (req, res) => {
-            this.tuitDao.createTuit(req.body, req.params.userid).then(tuit => res.json(tuit));
+            let userId = req.params.uid === "me"
+                && req.session['profile'] ?
+                req.session['profile']._id :
+                req.params.uid;
+            console.log(req.session['profile']);
+            this.tuitDao.createTuit(req.body, userId).then(tuit => res.json(tuit));
         };
         this.updateTuit = (req, res) => {
             this.tuitDao.updateTuit(req.params.tuitid, req.body).then(tuit => res.json(tuit));
@@ -27,7 +36,7 @@ class TuitController {
         this.app.get('/api/tuits/:tuitid', this.findTuitById);
         this.app.get('/api/users/:userid/tuits', this.findTuitsByUser);
         this.app.post('/api/users/:userid/tuits', this.createTuit);
-        this.app.put('/api/tuits/:tuitid', this.updateTuit);
+        this.app.put('/api/tuits/:tuitid ', this.updateTuit);
         this.app.delete('/api/tuits/:tuitid', this.deleteTuit);
     }
 }

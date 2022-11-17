@@ -34,7 +34,7 @@ export default class UserController implements UserControllerI {
             .then(user => res.json(user));
     }
     createUser = (req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => {
-        this.userDao.createUser(new User(req.body))
+        this.userDao.createUser(req.body)
             .then(user => res.json(user));
     }
     deleteUser = (req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => {

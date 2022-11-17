@@ -1,9 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("../models/User"));
 class UserController {
     constructor(app, userDao) {
         this.findAllUsers = (req, res) => {
@@ -19,7 +15,7 @@ class UserController {
                 .then(user => res.json(user));
         };
         this.createUser = (req, res) => {
-            this.userDao.createUser(new User_1.default(req.body))
+            this.userDao.createUser(req.body)
                 .then(user => res.json(user));
         };
         this.deleteUser = (req, res) => {
@@ -41,7 +37,7 @@ class UserController {
         this.app.get('/api/users/:userid', this.findUserByID);
         this.app.post('/api/users', this.createUser);
         this.app.delete('/api/users/:userid', this.deleteUser);
-        this.app.get('/api/users/username/:username/delete', this.deleteUserByUserName);
+        this.app.delete('/api/users/username/:username/delete', this.deleteUserByUserName);
         this.app.put('/api/users/:userid', this.updateUser);
     }
 }

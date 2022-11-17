@@ -15,16 +15,20 @@ export default class LikeDao implements LikeDaoI {
             .find({ tuit: tid })
             .count();
     }
-    findAllUsersThatLikedTuit = async (tid: string): Promise<Like[]> =>
+    findAllUsersThatLikedTuit = async (tid: string): Promise<any> => {
         LikeModel
             .find({ tuit: tid })
             .populate("likedBy")
             .exec();
-    findAllTuitsLikedByUser = async (uid: string): Promise<Like[]> =>
+    }
+
+    findAllTuitsLikedByUser = async (uid: string): Promise<any> => {
         LikeModel
             .find({ likedBy: uid })
             .populate("tuit")
             .exec();
+    }
+
     userLikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.create({ tuit: tid, likedBy: uid });
     userUnlikesTuit = async (uid: string, tid: string): Promise<any> =>

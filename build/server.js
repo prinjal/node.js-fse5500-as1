@@ -16,13 +16,33 @@ const BookmarkDao_1 = __importDefault(require("./daos/BookmarkDao"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
 const MessageDao_1 = __importDefault(require("./daos/MessageDao"));
 const LikeController_1 = __importDefault(require("./controllers/LikeController"));
+const auth_controller_1 = __importDefault(require("./controllers/auth-controller"));
 const cors = require('cors');
 var app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
 app.use(express_1.default.json());
 const user = process.env.USERNAME || 'prinjaldave';
 const userPassword = process.env.USERPASSWORD || 'pm07111996';
+let sess = {
+    secret: process.env.EXPRESS_SESSION_SECRET || "testsecret",
+    saveUninitialized: true,
+    resave: true,
+    // cookie: {
+    //     sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+    //     secure: process.env.NODE_ENV === "production",
+    // }
+};
+const session = require("express-session");
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
+app.use(session(sess));
+app.use(express_1.default.json());
 mongoose_1.default.connect(`mongodb+srv://${user}:${userPassword}@cluster0.vvupba6.mongodb.net/tuiter?retryWrites=true&w=majority`);
 //userDao.createUser(new User("alice", "alice123", "Alice", "Wonderland", "alice@wonderland.com"));
 const bookmarkController = new BookmarkController_1.default(app, new BookmarkDao_1.default());
@@ -31,6 +51,7 @@ const tuitController = new TuitController_1.default(app, new TuitDao_1.default()
 const followController = new FollowsController_1.default(app, new FollowsDao_1.default());
 const messageController = new MessageController_1.default(app, new MessageDao_1.default());
 const likeController = LikeController_1.default.getInstance(app);
+(0, auth_controller_1.default)(app);
 app.get('/', (req, res) => res.send('Welcome to Foundation of Software Engineering!!!!'));
 app.get('/hello', (req, res) => res.send('Welcome to Foundation of Software Engineering!'));
 /**

@@ -23,6 +23,8 @@ const LikeDao_1 = __importDefault(require("../daos/LikeDao"));
  */
 class LikeController {
     constructor() {
+        this.findAllUsersThatLikedTuitCount = (req, res) => LikeController.likeDao.findAllUsersThatLikedTuit(req.params.tid)
+            .then(likes => res.json(likes));
         /**
          * Retrieves all users that liked a tuit from the database
          * @param {Request} req Represents request from client, including the path
@@ -76,6 +78,7 @@ LikeController.getInstance = (app) => {
         LikeController.likeController = new LikeController();
         app.get("/api/users/:uid/likes", LikeController.likeController.findAllTuitsLikedByUser);
         app.get("/api/tuits/:tid/likes", LikeController.likeController.findAllUsersThatLikedTuit);
+        app.get("/api/tuits/:tid/likes/count", LikeController.likeController.findAllUsersThatLikedTuitCount);
         app.post("/api/users/:uid/likes/:tid", LikeController.likeController.userLikesTuit);
         app.delete("/api/users/:uid/unlikes/:tid", LikeController.likeController.userUnlikesTuit);
     }

@@ -3,7 +3,6 @@ import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
 import TuitDao from "../daos/TuitDao";
 import TuitControllerI from "../interfaces/TuitController";
-import Tuit from "../models/Tuit";
 
 export default class TuitController implements TuitControllerI {
     app: Express;
@@ -25,11 +24,20 @@ export default class TuitController implements TuitControllerI {
     findTuitById = (req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => {
         this.tuitDao.findTuitsByID(req.params.tuitid).then(tuit => res.json(tuit));
     }
-    findTuitsByUser = (req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => {
-        this.tuitDao.findTuitsByUser(req.params.userid).then(tuits => res.json(tuits));
+    findTuitsByUser = (req: any, res: Response<any, Record<string, any>>) => {
+        let userId = req.params.userid === "me"
+            && req.session['profile'] ?
+            req.session['profile']._id :
+            req.params.uid;
+        this.tuitDao.findTuitsByUser(userId).then(tuits => res.json(tuits));
     }
-    createTuit = (req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => {
-        this.tuitDao.createTuit(req.body, req.params.userid).then(tuit => res.json(tuit));
+    createTuit = (req: any, res: Response<any, Record<string, any>>) => {
+        let userId = req.params.userid === "me"
+            && req.session['profile'] ?
+            req.session['profile']._id :
+            req.params.uid;
+        //console.log(req);
+        this.tuitDao.createTuit(req.body, userId).then(tuit => res.json(tuit));
     }
     updateTuit = (req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => {
         this.tuitDao.updateTuit(req.params.tuitid, req.body).then(tuit => res.json(tuit));

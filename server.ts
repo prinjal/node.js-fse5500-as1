@@ -13,16 +13,60 @@ import MessageController from './controllers/MessageController';
 import MessageDao from './daos/MessageDao';
 import LikeController from './controllers/LikeController';
 import LikeDao from './daos/LikeDao';
+import AuthenticationController from './controllers/auth-controller';
 
 const cors = require('cors')
-
 var app = express();
+const session = require("express-session");
+let sess = {
+
+    secret: "test",
+
+    saveUninitialized: true,
+
+    resave: true,
+
+    cookie: {
+
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+
+        secure: process.env.NODE_ENV === "production",
+
+    }
+
+}
+
+
+
+if (process.env.ENV === 'PRODUCTION') {
+
+    app.set('trust proxy', 1) // trust first proxy
+
+    sess.cookie.secure = true // serve secure cookies
+
+}
+
+
+
+app.use(cors({
+
+    credentials: true,
+
+    origin: 'http://localhost:3000'
+
+}));
+
+app.use(session(sess))
+
 app.use(express.json());
-app.use(cors());
-app.use(express.json());
+
+
+
 
 const user = process.env.USERNAME || 'prinjaldave';
 const userPassword = process.env.USERPASSWORD || 'pm07111996';
+
+
 
 mongoose.connect(`mongodb+srv://${user}:${userPassword}@cluster0.vvupba6.mongodb.net/tuiter?retryWrites=true&w=majority`)
 
@@ -33,6 +77,7 @@ const tuitController = new TuitController(app, new TuitDao());
 const followController = new FollowsController(app, new FollowsDao());
 const messageController = new MessageController(app, new MessageDao());
 const likeController = LikeController.getInstance(app);
+AuthenticationController(app);
 
 app.get('/', (req: Request, res: Response) =>
     res.send('Welcome to Foundation of Software Engineering!!!!'));
