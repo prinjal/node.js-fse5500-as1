@@ -14,10 +14,16 @@ export default class LikeDao implements LikeDaoI {
     }
 
     findAllTuitsLikedByUser = async (uid: string): Promise<any> => {
-        return await LikeModel
+        LikeModel
             .find({ likedBy: uid })
-            .populate("tuit")
+            .populate({
+                path: "tuit",
+                populate: {
+                    path: "postedBy"
+                }
+            })
             .exec();
+
     }
 
     userLikesTuit = async (uid: string, tid: string): Promise<any> => {
@@ -28,10 +34,10 @@ export default class LikeDao implements LikeDaoI {
         return await LikeModel.deleteOne({ tuit: tid, likedBy: uid });
     }
 
-    findUserLikesTuit = async (uid: string, tid: string): Promise<any> =>{
+    findUserLikesTuit = async (uid: string, tid: string): Promise<any> => {
         return await LikeModel.findOne({ tuit: tid, likedBy: uid });
     }
 
-    
+
 
 }
