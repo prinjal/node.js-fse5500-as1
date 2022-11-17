@@ -44,5 +44,10 @@ class TuitDao {
             return yield TuitModel_1.default.deleteOne({ _id: tid });
         });
     }
+    updateLikes(tid, newStats) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield TuitModel_1.default.updateOne({ _id: tid }, { $set: { stats: newStats } });
+        });
+    }
 }
 exports.default = TuitDao;

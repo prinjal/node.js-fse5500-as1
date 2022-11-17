@@ -32,8 +32,10 @@ const mongoose_1 = __importStar(require("mongoose"));
  * @property {ObjectId} tuit The id of the tuit like by user
  * @property {ObjectId} likedBy The id of the user
  */
-const LikeSchema = new mongoose_1.default.Schema({
-    tuit: { type: mongoose_1.Schema.Types.ObjectId, ref: "TuitModel" },
-    likedBy: { type: mongoose_1.Schema.Types.ObjectId, ref: "UserModel" },
+const LikesSchema = new mongoose_1.default.Schema({
+    tuit: { type: mongoose_1.Schema.Types.ObjectId,
+        ref: "TuitModel" },
+    likedBy: { type: mongoose_1.Schema.Types.ObjectId,
+        ref: "UserModel" },
 }, { collection: "likes" });
-exports.default = LikeSchema;
+exports.default = LikesSchema;
