@@ -94,8 +94,7 @@ export default class LikeController implements LikeControllerI {
         console.log(userId)
         LikeController.likeDao.findAllTuitsLikedByUser(userId)
             .then(likes => {
-
-
+                console.log(likes)
                 const likesNonNullTuits =
                     likes.filter((like: { tuit: any; }) => like.tuit);
                 const tuitsFromLikes =
