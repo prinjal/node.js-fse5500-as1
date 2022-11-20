@@ -14,6 +14,7 @@ import MessageDao from './daos/MessageDao';
 import LikeController from './controllers/LikeController';
 import LikeDao from './daos/LikeDao';
 import AuthenticationController from './controllers/auth-controller';
+import DislikeController from './controllers/DislikeController';
 
 const cors = require('cors')
 var app = express();
@@ -77,6 +78,7 @@ const tuitController = new TuitController(app, new TuitDao());
 const followController = new FollowsController(app, new FollowsDao());
 const messageController = new MessageController(app, new MessageDao());
 const likeController = LikeController.getInstance(app);
+const disLikeController = DislikeController.getInstance(app);
 AuthenticationController(app);
 
 app.get('/', (req: Request, res: Response) =>
