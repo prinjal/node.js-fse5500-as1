@@ -28,14 +28,14 @@ export default class TuitController implements TuitControllerI {
         let userId = req.params.userid === "me"
             && req.session['profile'] ?
             req.session['profile']._id :
-            req.params.uid;
+            req.params.userid;
         this.tuitDao.findTuitsByUser(userId).then(tuits => res.json(tuits));
     }
     createTuit = (req: any, res: Response<any, Record<string, any>>) => {
         let userId = req.params.userid === "me"
             && req.session['profile'] ?
             req.session['profile']._id :
-            req.params.uid;
+            req.params.userid;
         //console.log(req);
         this.tuitDao.createTuit(req.body, userId).then(tuit => res.json(tuit));
     }
