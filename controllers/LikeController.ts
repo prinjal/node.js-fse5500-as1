@@ -135,9 +135,6 @@ export default class LikeController implements LikeControllerI {
         const userId = uid === "me" && profile ?
             profile._id : uid;
 
-
-        console.log(uid);
-        console.log(profile);
         try {
             const userAlreadyDisLikedTuit = await LikeController.disLikeDao
                 .findUserDisLikesTuit(userId, tid);
@@ -172,7 +169,6 @@ export default class LikeController implements LikeControllerI {
                 await LikeController.tuitDao.updateLikes(tid, tuit.stats);
                 tuit = await LikeController.tuitDao.findTuitsByID(tid);
             }
-
             res.sendStatus(200);
         } catch (e) {
             res.sendStatus(404);
