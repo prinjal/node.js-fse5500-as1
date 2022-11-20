@@ -17,4 +17,11 @@ export default class DislikeDao implements DislikeDaoI {
     userRemovesDislikeTuit = async (uid: string, tid: string): Promise<any> => {
         return await DisLikeModel.deleteOne({ tuit: tid, disLikedBy: uid });
     }
+
+    findAllTuitsDisLikedByUser = async (uid: string): Promise<any> => {
+        return await DisLikeModel
+            .find({ disLikedBy: uid })
+            .populate("tuit")
+            .exec();
+    }
 }

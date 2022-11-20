@@ -42,10 +42,10 @@ export default class DislikeController implements DislikeControllerI {
         if (DislikeController.disLikeController === null) {
             DislikeController.disLikeController = new DislikeController();
             app.get("/api/users/:uid/dislikes", DislikeController.disLikeController.findAllTuitsDisLikedByUser);
-            app.get("/api/tuits/:tid/dislikes", DislikeController.disLikeController.findAllTuitsDisLikedByUser);
-            app.get("/api/tuits/:tid/dislikes/count", DislikeController.disLikeController.findAllUsersThatDisLikedTuitCount);
-            app.post("/api/users/:uid/dislikes/:tid", DislikeController.disLikeController.userDisLikesTuit);
-            app.delete("/api/users/:uid/removedislikes/:tid", DislikeController.disLikeController.userRemoveDislikeTuit);
+            //app.get("/api/tuits/:tid/dislikes", DislikeController.disLikeController.findAllTuitsDisLikedByUser);
+            // app.get("/api/tuits/:tid/dislikes/count", DislikeController.disLikeController.findAllUsersThatDisLikedTuitCount);
+            // app.post("/api/users/:uid/dislikes/:tid", DislikeController.disLikeController.userDisLikesTuit);
+            // app.delete("/api/users/:uid/removedislikes/:tid", DislikeController.disLikeController.userRemoveDislikeTuit);
             app.put("/api/users/:uid/dislikes/:tid", DislikeController.disLikeController.userTogglesTuitDisLikes);
         }
         return DislikeController.disLikeController;
@@ -53,24 +53,12 @@ export default class DislikeController implements DislikeControllerI {
 
 
     private constructor() { }
-    findUserDisLikesTuit(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        throw new Error("Method not implemented.");
-    }
-    findAllUsersThatDisLikedTuit(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        throw new Error("Method not implemented.");
-    }
+    
     findAllTuitsDisLikedByUser(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        throw new Error("Method not implemented.");
+        DislikeController.disLikeDao.findAllTuitsDisLikedByUser (req.params.uid)
+        .then(likes => res.json(likes));
     }
-    findAllUsersThatDisLikedTuitCount(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        throw new Error("Method not implemented.");
-    }
-    userDisLikesTuit(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        throw new Error("Method not implemented.");
-    }
-    userRemoveDislikeTuit(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        throw new Error("Method not implemented.");
-    }
+    
 
     userTogglesTuitDisLikes = async (req: any, res: any) => {
         const uid = req.params.userid;
