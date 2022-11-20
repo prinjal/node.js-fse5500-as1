@@ -21,13 +21,13 @@ class LikeDao {
                 .count();
         });
         this.findAllUsersThatLikedTuit = (tid) => __awaiter(this, void 0, void 0, function* () {
-            return LikeModel_1.default
+            LikeModel_1.default
                 .find({ tuit: tid })
                 .populate("likedBy")
                 .exec();
         });
         this.findAllTuitsLikedByUser = (uid) => __awaiter(this, void 0, void 0, function* () {
-            return LikeModel_1.default
+            LikeModel_1.default
                 .find({ likedBy: uid })
                 .populate("tuit")
                 .exec();

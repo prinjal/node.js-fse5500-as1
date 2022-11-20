@@ -10,18 +10,18 @@ class TuitController {
             this.tuitDao.findTuitsByID(req.params.tuitid).then(tuit => res.json(tuit));
         };
         this.findTuitsByUser = (req, res) => {
-            let userId = req.params.uid === "me"
+            let userId = req.params.userid === "me"
                 && req.session['profile'] ?
                 req.session['profile']._id :
                 req.params.uid;
             this.tuitDao.findTuitsByUser(userId).then(tuits => res.json(tuits));
         };
         this.createTuit = (req, res) => {
-            let userId = req.params.uid === "me"
+            let userId = req.params.userid === "me"
                 && req.session['profile'] ?
                 req.session['profile']._id :
                 req.params.uid;
-            console.log(req.session['profile']);
+            //console.log(req);
             this.tuitDao.createTuit(req.body, userId).then(tuit => res.json(tuit));
         };
         this.updateTuit = (req, res) => {

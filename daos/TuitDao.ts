@@ -21,12 +21,12 @@ export default class TuitDao implements TuitDaoI {
         return await TuitModel.updateOne({ _id: tid }, { $set: tuit });
     }
 
-    async deleteTuit(tid: String): Promise<any> {
+    async deleteTuit(tid: string): Promise<any> {
         return await TuitModel.deleteOne({ _id: tid });
     }
 
     async updateLikes
-        (tid: String, newStats: any): Promise<any> {
+        (tid: string, newStats: any): Promise<any> {
         return await TuitModel.updateOne(
             { _id: tid },
             { $set: { stats: newStats } });
