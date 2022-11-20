@@ -3,6 +3,7 @@
  */
 
 import mongoose, { Schema } from "mongoose";
+import TuitModel from "./TuitModel";
 import Like from "../models/Like";
 
 
@@ -13,7 +14,7 @@ import Like from "../models/Like";
  */
  const LikesSchema = new mongoose.Schema({
     tuit: {type: Schema.Types.ObjectId,
-           ref: "TuitModel"},
+           ref: TuitModel},
     likedBy: {type: Schema.Types.ObjectId,
               ref: "UserModel"},
   }, {collection: "likes"});
