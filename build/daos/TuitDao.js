@@ -21,7 +21,7 @@ class TuitDao {
     }
     findTuitsByUser(uid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.findById({ postedBy: uid });
+            return yield TuitModel_1.default.find({ postedBy: uid });
         });
     }
     findTuitsByID(tid) {
@@ -29,9 +29,9 @@ class TuitDao {
             return yield TuitModel_1.default.findById(tid);
         });
     }
-    createTuit(tuit) {
+    createTuit(tuit, uid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TuitModel_1.default.create(tuit);
+            return yield TuitModel_1.default.create(Object.assign(Object.assign({}, tuit), { postedBy: uid }));
         });
     }
     updateTuit(tid, tuit) {
@@ -42,6 +42,11 @@ class TuitDao {
     deleteTuit(tid) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield TuitModel_1.default.deleteOne({ _id: tid });
+        });
+    }
+    updateLikes(tid, newStats) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield TuitModel_1.default.updateOne({ _id: tid }, { $set: { stats: newStats } });
         });
     }
 }
