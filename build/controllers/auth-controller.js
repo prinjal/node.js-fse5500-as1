@@ -112,3 +112,4 @@ const AuthenticationController = (app) => {
     app.post("/api/auth/logout", logout);
 };
 exports.default = AuthenticationController;
+//# sourceMappingURL=auth-controller.js.map

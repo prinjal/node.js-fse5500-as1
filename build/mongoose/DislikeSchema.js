@@ -39,3 +39,4 @@ const DislikeSchema = new mongoose_1.default.Schema({
         ref: "UserModel" },
 }, { collection: "dislikes" });
 exports.default = DislikeSchema;
+//# sourceMappingURL=DislikeSchema.js.map

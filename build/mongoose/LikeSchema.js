@@ -39,3 +39,4 @@ const LikesSchema = new mongoose_1.default.Schema({
         ref: "UserModel" },
 }, { collection: "likes" });
 exports.default = LikesSchema;
+//# sourceMappingURL=LikeSchema.js.map

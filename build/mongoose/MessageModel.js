@@ -11,3 +11,4 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const MessageSchema_1 = __importDefault(require("./MessageSchema"));
 const MessageModel = mongoose_1.default.model("MessageModel", MessageSchema_1.default);
 exports.default = MessageModel;
+//# sourceMappingURL=MessageModel.js.map

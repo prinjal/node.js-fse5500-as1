@@ -11,3 +11,4 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const FollowSchema_1 = __importDefault(require("./FollowSchema"));
 const FollowModel = mongoose_1.default.model('Follows', FollowSchema_1.default);
 exports.default = FollowModel;
+//# sourceMappingURL=FollowModel.js.map

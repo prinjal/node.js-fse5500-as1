@@ -146,3 +146,4 @@ LikeController.getInstance = (app) => {
     return LikeController.likeController;
 };
 ;
+//# sourceMappingURL=LikeController.js.map

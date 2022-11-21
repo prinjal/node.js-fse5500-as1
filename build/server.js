@@ -26,17 +26,17 @@ let sess = {
     saveUninitialized: true,
     resave: true,
     cookie: {
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "PRODUCTION" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === "PRODUCTION",
     }
 };
-if (process.env.ENV === 'PRODUCTION') {
+if (process.env.NODE_ENV === 'PRODUCTION') {
     app.set('trust proxy', 1); // trust first proxy
     sess.cookie.secure = true; // serve secure cookies
 }
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: process.env.ORIGIN_ADDRS
 }));
 app.use(session(sess));
 app.use(express_1.default.json());
@@ -61,3 +61,4 @@ app.get('/hello', (req, res) => res.send('Welcome to Foundation of Software Engi
 const PORT = process.env.PORT || 8080;
 console.log(PORT);
 app.listen(PORT);
+//# sourceMappingURL=server.js.map

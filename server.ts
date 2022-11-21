@@ -29,9 +29,9 @@ let sess = {
 
     cookie: {
 
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        sameSite: process.env.NODE_ENV === "PRODUCTION" ? 'none' : 'lax',
 
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "PRODUCTION",
 
     }
 
@@ -39,7 +39,7 @@ let sess = {
 
 
 
-if (process.env.ENV === 'PRODUCTION') {
+if (process.env.NODE_ENV === 'PRODUCTION') {
 
     app.set('trust proxy', 1) // trust first proxy
 
@@ -53,7 +53,7 @@ app.use(cors({
 
     credentials: true,
 
-    origin: 'http://localhost:3000'
+    origin: process.env.ORIGIN_ADDRS
 
 }));
 

@@ -21,3 +21,4 @@ const MessageSchema = new mongoose_1.default.Schema({
     sentOn: Date
 });
 exports.default = MessageSchema;
+//# sourceMappingURL=MessageSchema.js.map

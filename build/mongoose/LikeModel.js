@@ -11,3 +11,4 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const LikeSchema_1 = __importDefault(require("./LikeSchema"));
 const LikeModel = mongoose_1.default.model("LikeModel", LikeSchema_1.default);
 exports.default = LikeModel;
+//# sourceMappingURL=LikeModel.js.map

@@ -11,3 +11,4 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const BookmarkSchema_1 = __importDefault(require("./BookmarkSchema"));
 const BookmarkModel = mongoose_1.default.model('Bookmark', BookmarkSchema_1.default);
 exports.default = BookmarkModel;
+//# sourceMappingURL=BookmarkModel.js.map

@@ -22,3 +22,4 @@ class BookmarkController {
     }
 }
 exports.default = BookmarkController;
+//# sourceMappingURL=BookmarkController.js.map

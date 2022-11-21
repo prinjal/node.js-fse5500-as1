@@ -17,3 +17,4 @@ const BookmarkSchema = new mongoose_1.default.Schema({
     bookmarkedBy: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "UserModel", require: true }
 }, { collection: "bookmarks" });
 exports.default = BookmarkSchema;
+//# sourceMappingURL=BookmarkSchema.js.map

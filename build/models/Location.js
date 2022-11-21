@@ -11,3 +11,4 @@ class Location {
     }
 }
 exports.default = Location;
+//# sourceMappingURL=Location.js.map

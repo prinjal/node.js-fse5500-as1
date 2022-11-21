@@ -29,3 +29,4 @@ const TuitSchema = new mongoose_1.default.Schema({
     likes: Number
 }, { collection: 'tuits' });
 exports.default = TuitSchema;
+//# sourceMappingURL=TuitSchema.js.map

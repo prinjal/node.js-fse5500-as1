@@ -41,3 +41,4 @@ class TuitController {
     }
 }
 exports.default = TuitController;
+//# sourceMappingURL=TuitController.js.map

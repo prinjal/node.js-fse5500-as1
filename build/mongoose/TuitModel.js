@@ -11,3 +11,4 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const TuitSchema_1 = __importDefault(require("./TuitSchema"));
 const TuitModel = mongoose_1.default.model("Tuits", TuitSchema_1.default);
 exports.default = TuitModel;
+//# sourceMappingURL=TuitModel.js.map

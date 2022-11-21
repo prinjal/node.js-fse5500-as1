@@ -57,3 +57,4 @@ class BookmarkDao {
     }
 }
 exports.default = BookmarkDao;
+//# sourceMappingURL=BookmarkDao.js.map

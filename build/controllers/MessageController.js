@@ -27,3 +27,4 @@ class MessageController {
     }
 }
 exports.default = MessageController;
+//# sourceMappingURL=MessageController.js.map

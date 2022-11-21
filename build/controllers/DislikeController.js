@@ -106,3 +106,4 @@ DislikeController.getInstance = (app) => {
     }
     return DislikeController.disLikeController;
 };
+//# sourceMappingURL=DislikeController.js.map

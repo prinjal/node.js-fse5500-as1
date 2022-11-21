@@ -11,3 +11,4 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const DislikeSchema_1 = __importDefault(require("./DislikeSchema"));
 const DisLikeModel = mongoose_1.default.model("DisLikeModel", DislikeSchema_1.default);
 exports.default = DisLikeModel;
+//# sourceMappingURL=DislikeModel.js.map
