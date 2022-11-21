@@ -63,8 +63,37 @@ export default class DislikeController implements DislikeControllerI {
      */
     
     findAllTuitsDisLikedByUser(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
-        DislikeController.disLikeDao.findAllTuitsDisLikedByUser (req.params.uid)
-        .then(likes => res.json(likes));
+        const uid = req.params.uid;
+        // @ts-ignore
+        const profile = req.session['profile'];
+        const userId = uid === 'me' && profile ?
+            profile._id : uid;
+
+        if (userId === "me") {
+            res.sendStatus(503);
+            return;
+        }
+
+        console.log(userId)
+        DislikeController.disLikeDao.findAllTuitsDislikedByUser(userId)
+            .then(likes => {
+                console.log(likes)
+                const likesNonNullTuits =
+                    likes.filter((like: { tuit: any; }) => like.tuit);
+                const tuitsFromLikes =
+                    likesNonNullTuits.map((like: { tuit: any; }) => like.tuit);
+                res.json(tuitsFromLikes);
+            });
+
+    }
+    findAllUsersThatDisLikedTuitCount(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
+        throw new Error("Method not implemented.");
+    }
+    userDisLikesTuit(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
+        throw new Error("Method not implemented.");
+    }
+    userRemoveDislikeTuit(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
+        throw new Error("Method not implemented.");
     }
     
 
@@ -78,11 +107,13 @@ export default class DislikeController implements DislikeControllerI {
      */
 
     userTogglesTuitDisLikes = async (req: any, res: any) => {
-        const uid = req.params.userid;
+        const uid = req.params.uid;
         const tid = req.params.tid;
         const profile = req.session['profile'];
         const userId = uid === "me" && profile ?
             profile._id : uid;
+
+
         try {
             const userAlreadyDisLikedTuit = await DislikeController.disLikeDao
                 .findUserDisLikesTuit(userId, tid);
@@ -93,10 +124,11 @@ export default class DislikeController implements DislikeControllerI {
             const howManyLikedTuit = await DislikeController.likeDao
                 .findAllUsersThatLikedTuitCount(tid);
 
-            // console.log(userAlreadyDisLikedTuit)
-            // console.log(userAlreadyLikedTuit)
-            // console.log(howManyDisLikedTuit)
-            // console.log(howManyLikedTuit)
+            //console.log(userAlreadyDisLikedTuit)
+            console.log(userAlreadyLikedTuit)
+            console.log(uid)
+            //console.log(howManyDisLikedTuit)
+            //console.log(howManyLikedTuit)
 
             let tuit = await DislikeController.tuitDao.findTuitsByID(tid);
 
@@ -114,7 +146,6 @@ export default class DislikeController implements DislikeControllerI {
                     tuit.stats['dislikes'] = howManyDisLikedTuit + 1;
 
                 };
-                console.log(tuit.stats);
                 await DislikeController.tuitDao.updateLikes(tid, tuit.stats);
             }
 

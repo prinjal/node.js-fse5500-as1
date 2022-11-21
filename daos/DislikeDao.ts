@@ -8,11 +8,18 @@ import DislikeDaoI from "../interfaces/DislikeDao";
  * @property {DislikeDao} dislikeDao Private single instance of DislikeDao
  */
 export default class DislikeDao implements DislikeDaoI {
-     /**
-     * Uses DislikeModel to retrieve users disliked documents from dislikes collection disliked a tuit or not
-     * @param {string} tid Tuit's primary key
-     * @returns Promise To be notified when the dislikes are retrieved from database
-     */
+    findAllTuitsDislikedByUser = async (uid: string): Promise<any> => {
+        return await DisLikeModel
+            .find({ disLikedBy: uid })
+            .populate({
+                path: "tuit",
+                populate: {
+                    path: "postedBy"
+                }
+            })
+            .exec();
+    }
+
     findUserDisLikesTuit = async (uid: string, tid: string): Promise<any> => {
         return await DisLikeModel.findOne({ tuit: tid, likedBy: uid });
     }

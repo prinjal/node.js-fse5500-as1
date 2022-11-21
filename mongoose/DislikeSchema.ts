@@ -4,6 +4,8 @@
 
 import mongoose, { Schema } from "mongoose";
 import Like from "../models/Like";
+import TuitModel from "./TuitModel";
+import UserModel from "./UserModel";
 
 
 /**
@@ -13,8 +15,8 @@ import Like from "../models/Like";
  */
  const DislikeSchema = new mongoose.Schema({
     tuit: {type: Schema.Types.ObjectId,
-           ref: "TuitModel"},
+           ref: TuitModel},
     disLikedBy: {type: Schema.Types.ObjectId,
-              ref: "UserModel"},
+              ref: UserModel},
   }, {collection: "dislikes"});
   export default DislikeSchema;

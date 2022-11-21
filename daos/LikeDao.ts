@@ -41,8 +41,14 @@ export default class LikeDao implements LikeDaoI {
     findAllTuitsLikedByUser = async (uid: string): Promise<any> => {
         return await LikeModel
             .find({ likedBy: uid })
-            .populate("tuit")
+            .populate({
+                path: "tuit",
+                populate: {
+                    path: "postedBy"
+                }
+            })
             .exec();
+
     }
 
     /**
@@ -65,16 +71,10 @@ export default class LikeDao implements LikeDaoI {
         return await LikeModel.deleteOne({ tuit: tid, likedBy: uid });
     }
 
-    /**
-     * Check if the user has already liked the tuit
-     * @param {string} uid User's primary key
-     * @param {string} tid Tuit's primary key
-     * @returns Promise To be notified when like is removed from the database
-     */
-    findUserLikesTuit = async (uid: string, tid: string): Promise<any> =>{
+    findUserLikesTuit = async (uid: string, tid: string): Promise<any> => {
         return await LikeModel.findOne({ tuit: tid, likedBy: uid });
     }
 
-    
+
 
 }

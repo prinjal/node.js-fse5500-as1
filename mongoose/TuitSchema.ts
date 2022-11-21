@@ -18,14 +18,14 @@ import User from "../models/User";
 const TuitSchema = new mongoose.Schema({
     tuit: { type: String, required: true },
     postedOn: Date,
-    postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel', required: true },
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tuit' }],
+    postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel', require: true },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TuitModel' }],
     stats: {
         replies: { type: Number, default: 0 },
         retuits: { type: Number, default: 0 },
         likes: { type: Number, default: 0 },
         dislikes: { type: Number, default: 0 }
-    },    
+    },
     likes: Number
 }, { collection: 'tuits' });
 
